@@ -1,17 +1,19 @@
-class ListPageObject {
+class PageObjectList {
   constructor() {
-    this._addBeansBtn = element(by.id('add-button'));
+    this.addBeansBtn = element(by.id('add-button'));
   }
 
-  openRootView() {
+  openThisPage() {
+    //TODO: URL ハードコードを設定ファイルにまとめる
+    // ここで /list の表示条件を整える
     return browser.get('http://localhost:9000');
   }
 
-  openRegisteringBeansView() {
-    this.openRootView();
-    browser.wait(()=> { return this._addBeansBtn.isPresent(); });
-    return this._addBeansBtn.click();
+  openAddPage() {
+    this.openThisPage();
+    browser.wait(()=> { return this.addBeansBtn.isPresent(); });
+    return this.addBeansBtn.click();
   }
 }
 
-module.exports = new ListPageObject();
+module.exports = new PageObjectList();
