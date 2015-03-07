@@ -1,16 +1,16 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('AddController',['$scope', '$state', '$http',
-  ($scope, $state, $http) => {
+.controller('AddController',['$scope', '$state', '$http', 'SERVER_URL',
+  ($scope, $state, $http, SERVER_URL) => {
 
     $scope.regions = [];
-    $http.get('http://localhost:8000/api/regions')
+    $http.get(`${SERVER_URL}/api/regions`)
       .success((data) => {
         $scope.regions = data;
       });
     $scope.register = () => {
-      $http.post('http://localhost:8000/api/beans', {
+      $http.post(`${SERVER_URL}/api/beans`, {
         brand: $scope.bean.brand,
         amount: $scope.bean.amount,
         importDate: $scope.bean.importDate && $scope.bean.importDate.toISOString(),

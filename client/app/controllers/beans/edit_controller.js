@@ -1,15 +1,15 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('EditController',['$scope', '$state', '$stateParams', '$http',
-  ($scope, $state, $stateParams, $http) => {
+.controller('EditController',['$scope', '$state', '$stateParams', '$http', 'SERVER_URL',
+  ($scope, $state, $stateParams, $http, SERVER_URL) => {
 
     $scope.regions = [];
-    $http.get('http://localhost:8000/api/regions')
+    $http.get(`${SERVER_URL}/api/regions`)
       .success((data) => {
         $scope.regions = data;
 
-        $http.get('http://localhost:8000/api/beans/' + $stateParams.id)
+        $http.get(`${SERVER_URL}/api/beans/` + $stateParams.id)
           .success((data) => {
             data.importDate = data.importDate && new Date(data.importDate);
             $scope.bean = data;
@@ -17,7 +17,7 @@ angular.module('Es6SonApp')
       });
 
     $scope.update = () => {
-      $http.put('http://localhost:8000/api/beans/' + $stateParams.id, {
+      $http.put(`${SERVER_URL}/api/beans/` + $stateParams.id, {
         brand: $scope.bean.brand,
         amount: $scope.bean.amount,
         importDate: $scope.bean.importDate && $scope.bean.importDate.toISOString(),

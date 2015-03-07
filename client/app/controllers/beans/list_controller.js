@@ -1,21 +1,21 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('ListController', ['$scope', '$http',
-  ($scope, $http) => {
+.controller('ListController', ['$scope', '$http', 'SERVER_URL',
+  ($scope, $http, SERVER_URL) => {
 
-    $http.get('http://localhost:8000/api/beans')
+    $http.get(`${SERVER_URL}/api/beans`)
       .success((data) => {
         $scope.beans = data;
       });
-    $http.get('http://localhost:8000/api/regions')
+    $http.get(`${SERVER_URL}/api/regions`)
       .success((data) => {
         $scope.regions = data;
       });
     $scope.delete = (id) => {
-      $http.delete('http://localhost:8000/api/beans/' + id)
+      $http.delete(`${SERVER_URL}/api/beans/` + id)
         .success(() => {
-          $http.get('http://localhost:8000/api/beans')
+          $http.get(`${SERVER_URL}/api/beans`)
             .success((data) => {
               list.beans = data;
             });
