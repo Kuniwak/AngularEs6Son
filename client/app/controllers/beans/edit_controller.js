@@ -1,10 +1,10 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('EditController',['$scope', '$state', '$stateParams', '$http', 'Bean', 'Region',
-  ($scope, $state, $stateParams, $http, Bean, Region) => {
+.controller('EditController',['$scope', '$state', '$stateParams', '$http', 'Bean', 'regions',
+  ($scope, $state, $stateParams, $http, Bean, regions) => {
 
-    $scope.regions = Region.query();
+    $scope.regions = regions;
     Bean.get({id: $stateParams.id}, (data) => {
       data.importDate = data.importDate && new Date(data.importDate);
       $scope.bean = data;

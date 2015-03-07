@@ -1,10 +1,10 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('AddController',['$scope', '$state', '$http', 'Bean', 'Region',
-  ($scope, $state, $http, Bean, Region) => {
+.controller('AddController',['$scope', '$state', '$http', 'Bean', 'regions',
+  ($scope, $state, $http, Bean, regions) => {
 
-    $scope.regions = Region.query();
+    $scope.regions = regions;
 
     $scope.register = () => {
       var bean = new Bean($scope.bean);

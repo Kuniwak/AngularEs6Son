@@ -11,7 +11,14 @@ angular.module('Es6SonApp')
       url: '/#',
       template: '<div ui-view="header"></div>' +
         '<div ui-view="contents" class="main"></div>' +
-        '<div ui-view="footer"></div>'
+        '<div ui-view="footer"></div>',
+      resolve: {
+        regions: ['Region',
+          (Region) => {
+            return Region.query();
+          }
+        ]
+      }
     })
 
     // アプリルート
