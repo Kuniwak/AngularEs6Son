@@ -6,7 +6,7 @@ class PageObjectList {
   openThisPage() {
     //TODO: URL ハードコードを設定ファイルにまとめる
     // ここで /list の表示条件を整える
-    return browser.get('http://localhost:9000');
+    return browser.get('http://localhost:9000/list');
   }
 
   openAddPage() {
