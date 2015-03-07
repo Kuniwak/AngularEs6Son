@@ -1,22 +1,21 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('AddController',['$state', '$http',
-  function($state, $http) {
+.controller('AddController',['$scope', '$state', '$http',
+  ($scope, $state, $http) => {
 
-    var add = this;
-    add.regions = [];
+    $scope.regions = [];
     $http.get('http://localhost:8000/api/regions')
-      .success(function(data) {
-        add.regions = data;
+      .success((data) => {
+        $scope.regions = data;
       });
-    add.register = function() {
+    $scope.register = () => {
       $http.post('http://localhost:8000/api/beans', {
-        brand: add.bean.brand,
-        amount: add.bean.amount,
-        importDate: add.bean.importDate && add.bean.importDate.toISOString(),
-        region: add.bean.region
-      }).success(function() {
+        brand: $scope.bean.brand,
+        amount: $scope.bean.amount,
+        importDate: $scope.bean.importDate && $scope.bean.importDate.toISOString(),
+        region: $scope.bean.region
+      }).success(() => {
         $state.go('app.root.list');
       });
     };

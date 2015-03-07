@@ -2,7 +2,7 @@ import angular from 'angular';
 
 angular.module('Es6SonApp')
 .config(['$urlRouterProvider', '$stateProvider',
-  function($urlRouterProvider, $stateProvider) {
+  ($urlRouterProvider, $stateProvider) => {
 
     $urlRouterProvider.otherwise('/list');
 
@@ -37,7 +37,6 @@ angular.module('Es6SonApp')
       views: {
         'contents@app': {
           templateUrl: 'app/view/list.html',
-          controllerAs: 'list',
           controller: 'ListController'
         }
       }
@@ -49,7 +48,6 @@ angular.module('Es6SonApp')
       views: {
         'contents@app': {
           templateUrl: 'app/view/add.html',
-          controllerAs: 'add',
           controller: 'AddController'
         }
       }
@@ -61,7 +59,6 @@ angular.module('Es6SonApp')
       views: {
         'contents@app': {
           templateUrl: 'app/view/edit.html',
-          controllerAs: 'edit',
           controller: 'EditController'
         }
       }

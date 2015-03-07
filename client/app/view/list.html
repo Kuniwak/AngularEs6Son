@@ -10,7 +10,7 @@
   </h2>
 
   <div class="list-group">
-    <div ng-repeat="bean in list.beans">
+    <div ng-repeat="bean in beans">
       <div class="list-group-item">
         <div class="row-picture">
           <img class="circle" src="/images/18.jpg" ng-show="bean.region === 1">
@@ -33,7 +33,7 @@
           </p>
           <div>
             <a ui-sref="app.root.edit({id: bean.id })" class="btn btn-primary btn-raised">編集</a>
-            <a ng-click="list.delete(bean.id)" class="btn btn-flat btn-danger">削除</a>
+            <a ng-click="delete(bean.id)" class="btn btn-flat btn-danger">削除</a>
           </div>
         </div>
       </div>

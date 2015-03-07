@@ -1,23 +1,22 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('ListController', ['$http',
-  function($http) {
+.controller('ListController', ['$scope', '$http',
+  ($scope, $http) => {
 
-    var list = this;
     $http.get('http://localhost:8000/api/beans')
-      .success(function(data) {
-        list.beans = data;
+      .success((data) => {
+        $scope.beans = data;
       });
     $http.get('http://localhost:8000/api/regions')
-      .success(function(data) {
-        list.regions = data;
+      .success((data) => {
+        $scope.regions = data;
       });
-    list.delete = function(id) {
+    $scope.delete = (id) => {
       $http.delete('http://localhost:8000/api/beans/' + id)
-        .success(function() {
+        .success(() => {
           $http.get('http://localhost:8000/api/beans')
-            .success(function(data) {
+            .success((data) => {
               list.beans = data;
             });
         });

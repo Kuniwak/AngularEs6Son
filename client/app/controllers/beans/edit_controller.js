@@ -1,29 +1,28 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('EditController',['$state', '$stateParams', '$http',
-  function($state, $stateParams, $http) {
+.controller('EditController',['$scope', '$state', '$stateParams', '$http',
+  ($scope, $state, $stateParams, $http) => {
 
-    var edit = this;
-    edit.regions = [];
+    $scope.regions = [];
     $http.get('http://localhost:8000/api/regions')
-      .success(function(data) {
-        edit.regions = data;
+      .success((data) => {
+        $scope.regions = data;
 
         $http.get('http://localhost:8000/api/beans/' + $stateParams.id)
-          .success(function(data) {
+          .success((data) => {
             data.importDate = data.importDate && new Date(data.importDate);
-            edit.bean = data;
+            $scope.bean = data;
           });
       });
 
-    edit.update = function() {
+    $scope.update = () => {
       $http.put('http://localhost:8000/api/beans/' + $stateParams.id, {
-        brand: edit.bean.brand,
-        amount: edit.bean.amount,
-        importDate: edit.bean.importDate && edit.bean.importDate.toISOString(),
-        region: edit.bean.region
-      }).success(function() {
+        brand: $scope.bean.brand,
+        amount: $scope.bean.amount,
+        importDate: $scope.bean.importDate && $scope.bean.importDate.toISOString(),
+        region: $scope.bean.region
+      }).success(() => {
         $state.go('app.root.list');
       });
     };
