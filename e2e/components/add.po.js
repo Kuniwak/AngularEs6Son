@@ -1,6 +1,10 @@
 class PageObjectAdd {
   constructor() {
     this.submitBtn = element(by.id('submit'));
+    this.brandInput = element(by.id('brand'));
+    this.regionInput = element(by.id('region'));
+    this.amountInput = element(by.id('amount'));
+    this.importDateInput = element(by.id('import-date'));
   }
 
   openThisPage() {
