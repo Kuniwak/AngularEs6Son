@@ -1,25 +1,16 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('ListController', ['$scope', '$http', 'SERVER_URL',
-  ($scope, $http, SERVER_URL) => {
+.controller('ListController', ['$scope', '$http', 'Bean', 'Region',
+  ($scope, $http, Bean, Region) => {
 
-    $http.get(`${SERVER_URL}/api/beans`)
-      .success((data) => {
-        $scope.beans = data;
-      });
-    $http.get(`${SERVER_URL}/api/regions`)
-      .success((data) => {
-        $scope.regions = data;
-      });
+    $scope.beans = Bean.query();
+    $scope.regions = Region.query();
+
     $scope.delete = (id) => {
-      $http.delete(`${SERVER_URL}/api/beans/` + id)
-        .success(() => {
-          $http.get(`${SERVER_URL}/api/beans`)
-            .success((data) => {
-              list.beans = data;
-            });
-        });
+      Bean.delete({id: id}, () => {
+        $scope.beans = Bean.query();
+      });
     };
 
   }

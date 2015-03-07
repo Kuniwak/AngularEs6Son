@@ -1,14 +1,10 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.filter('regionName', ['$http',
-  ($http) => {
+.filter('regionName', ['Region',
+  (Region) => {
 
-    var region = [];
-    $http.get('http://localhost:8000/api/regions')
-      .success((data) => {
-        region = data;
-      });
+    var region = Region.query();
     return (input) => {
       var ret = '';
       angular.forEach(region, (v) => {

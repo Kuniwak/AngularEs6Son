@@ -15,17 +15,15 @@
 <script src="config.js"></script>
 <script>
   System.import('app/loader').then(function(){
-    return System.import('app/main');
-  }).then(function(){
-    return Promise.all(
-      System.import('app/services/bean_service'),
-      System.import('app/routes'),
-      System.import('app/constants');
-      System.import('app/filters/region-name_filter'),
-      System.import('app/controllers/beans/add_controller'),
-      System.import('app/controllers/beans/edit_controller'),
-      System.import('app/controllers/beans/list_controller')
-    );
+    System.import('app/main');
+    System.import('app/constants');
+    System.import('app/routes');
+    System.import('app/services/bean_service');
+    System.import('app/services/region_service');
+    System.import('app/filters/region-name_filter');
+    System.import('app/controllers/beans/add_controller');
+    System.import('app/controllers/beans/edit_controller');
+    System.import('app/controllers/beans/list_controller');
   }).then(function(){
     return System.import('bootstrap');
   });

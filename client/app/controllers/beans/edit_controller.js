@@ -1,28 +1,17 @@
 import angular from 'angular';
 
 angular.module('Es6SonApp')
-.controller('EditController',['$scope', '$state', '$stateParams', '$http', 'SERVER_URL',
-  ($scope, $state, $stateParams, $http, SERVER_URL) => {
+.controller('EditController',['$scope', '$state', '$stateParams', '$http', 'Bean', 'Region',
+  ($scope, $state, $stateParams, $http, Bean, Region) => {
 
-    $scope.regions = [];
-    $http.get(`${SERVER_URL}/api/regions`)
-      .success((data) => {
-        $scope.regions = data;
-
-        $http.get(`${SERVER_URL}/api/beans/` + $stateParams.id)
-          .success((data) => {
-            data.importDate = data.importDate && new Date(data.importDate);
-            $scope.bean = data;
-          });
-      });
+    $scope.regions = Region.query();
+    Bean.get({id: $stateParams.id}, (data) => {
+      data.importDate = data.importDate && new Date(data.importDate);
+      $scope.bean = data;
+    });
 
     $scope.update = () => {
-      $http.put(`${SERVER_URL}/api/beans/` + $stateParams.id, {
-        brand: $scope.bean.brand,
-        amount: $scope.bean.amount,
-        importDate: $scope.bean.importDate && $scope.bean.importDate.toISOString(),
-        region: $scope.bean.region
-      }).success(() => {
+      $scope.bean.$update({id: $scope.bean.id}, () => {
         $state.go('app.root.list');
       });
     };

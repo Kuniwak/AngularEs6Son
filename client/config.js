@@ -12,7 +12,9 @@ System.config({
   "map": {
     "FezVrasta/bootstrap-material-design": "github:FezVrasta/bootstrap-material-design@0.2.2",
     "angular": "github:angular/bower-angular@1.3.14",
+    "angular-resource": "github:angular/bower-angular-resource@1.3.13",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.13",
+    "angular/bower-angular-resource": "github:angular/bower-angular-resource@1.3.13",
     "bootstrap": "github:twbs/bootstrap@3.3.2",
     "css": "github:systemjs/plugin-css@0.1.6",
     "image": "github:systemjs/plugin-image@0.1.0",
