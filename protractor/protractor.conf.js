@@ -10,7 +10,7 @@ exports.config = {
 
   // not angular applicaton test setting
   onPrepare: function() {
-    browser.ignoreSynchronization = true;
+    browser.ignoreSynchronization = false;
   },
   // add proper version number
   seleniumServerJar: '../node_modules/protractor/selenium/selenium-server-standalone-2.45.0.jar',
